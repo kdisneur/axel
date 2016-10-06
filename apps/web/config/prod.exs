@@ -16,6 +16,13 @@ config :web, Web.Endpoint,
   url: [host: "example.com", port: 80],
   cache_static_manifest: "priv/static/manifest.json"
 
+
+config :web, :basic_auth, [
+  realm: "Secured Area",
+  username: System.get_env("BASIC_AUTH_USER"),
+  password: System.get_env("BASIC_AUTH_PASSWORD")
+]
+
 # Do not print debug messages in production
 config :logger, level: :info
 

@@ -36,6 +36,7 @@ defmodule Web.Mixfile do
 
   defp deps do
     [
+      {:basic_auth, "~> 1.0.0"},
       {:business, in_umbrella: true},
       {:cowboy, "~> 1.0"},
       {:gettext, "~> 0.11"},

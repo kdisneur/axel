@@ -7,10 +7,12 @@ defmodule Web.Router do
     plug :fetch_flash
     plug :protect_from_forgery
     plug :put_secure_browser_headers
+    plug BasicAuth, Application.get_env(:web, :basic_auth)
   end
 
   pipeline :api do
     plug :accepts, ["json"]
+    plug BasicAuth, Application.get_env(:web, :basic_auth)
   end
 
   scope "/", Web do
