@@ -13,8 +13,7 @@ use Mix.Config
 # which you typically run after static files are built.
 config :web, Web.Endpoint,
   http: [port: {:system, "PORT"}],
-  url: [host: "example.com", port: 80],
-  cache_static_manifest: "priv/static/manifest.json"
+  url: [host: {System.get_env("HOST")}, port: {:system, "PORT"}]
 
 config :web, Web.Endpoint,
   secret_key_base: System.get_env("SECRET_KEY_BASE")
