@@ -23,5 +23,6 @@ defmodule Web.Router do
     pipe_through :api
 
     resources "/baby_bottles", BabyBottlesController, only: [:create]
+    resources "/diapers", DiapersController, only: [:create]
   end
 end
