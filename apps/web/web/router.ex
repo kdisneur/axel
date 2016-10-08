@@ -24,5 +24,11 @@ defmodule Web.Router do
 
     resources "/baby_bottles", BabyBottlesController, only: [:create]
     resources "/diapers", DiapersController, only: [:create]
+
+    scope "/stats", Stats do
+      scope "/baby_bottles", BabyBottle do
+        resources "/daily_consumption", DailyConsumptionController, only: [:show]
+      end
+    end
   end
 end
