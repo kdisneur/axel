@@ -26,9 +26,7 @@ defmodule Web.Router do
     resources "/diapers", DiapersController, only: [:create]
 
     scope "/stats", Stats do
-      scope "/baby_bottles", BabyBottle do
-        resources "/daily_consumption", DailyConsumptionController, only: [:show]
-      end
+      resources "/daily_consumption", DailyConsumptionController, only: [:show]
     end
   end
 end
