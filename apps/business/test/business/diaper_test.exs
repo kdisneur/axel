@@ -63,4 +63,22 @@ defmodule Business.DiaperTest do
 
     assert 0 == Diaper.daily_pee_count({2016, 10, 2})
   end
+
+  test "daily_history: when date is linked to some diapers containing pee" do
+    {:ok, _change} = Diaper.add({{2016, 10, 4}, {18, 28, 10}}, {true, false})
+    {:ok, _change} = Diaper.add({{2016, 10, 3}, {18, 28, 10}}, {false, true})
+    {:ok, _change} = Diaper.add({{2016, 10, 4}, {18, 28, 10}}, {true, false})
+    {:ok, _change} = Diaper.add({{2016, 10, 4}, {18, 28, 10}}, {false, true})
+
+    assert 3 == length(Diaper.daily_history({2016, 10, 4}))
+  end
+
+  test "daily_history: when date is linked to some diapers which doesn't contain pee" do
+    {:ok, _change} = Diaper.add({{2016, 10, 4}, {18, 28, 10}}, {true, false})
+    {:ok, _change} = Diaper.add({{2016, 10, 3}, {18, 28, 10}}, {false, true})
+    {:ok, _change} = Diaper.add({{2016, 10, 4}, {18, 28, 10}}, {true, false})
+    {:ok, _change} = Diaper.add({{2016, 10, 4}, {18, 28, 10}}, {false, true})
+
+    assert 0 == length(Diaper.daily_history({2016, 10, 2}))
+  end
 end

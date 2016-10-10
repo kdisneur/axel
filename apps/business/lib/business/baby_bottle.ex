@@ -8,4 +8,8 @@ defmodule Business.BabyBottle do
   def daily_consumption(date) do
     Business.BabyBottle.Stats.daily_consumption(date)
   end
+
+  def daily_history(date) do
+    Business.BabyBottle.Query.all_by_date(date)
+  end
 end

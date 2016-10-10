@@ -12,4 +12,8 @@ defmodule Business.Diaper do
   def daily_pee_count(date) do
     Business.Diaper.Stats.daily_pee_count(date)
   end
+
+  def daily_history(date) do
+    Business.Diaper.Query.all_by_date(date)
+  end
 end
