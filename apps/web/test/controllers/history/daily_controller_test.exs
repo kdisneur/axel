@@ -40,7 +40,7 @@ defmodule Web.History.DailyControllerTest do
     assert 200 == conn.status
     assert "2016-10-04" == response["date"]
     assert 5 == length(response["history"])
-    assert ["feeding", "feeding", "change", "change", "change"] == Enum.map(response["history"], &(&1["type"]))
+    assert ["feeding", "change", "change", "change", "feeding"] == Enum.map(response["history"], &(&1["type"]))
   end
 
   test "show: when date is not linked to any feeding or changes", %{conn: conn} do

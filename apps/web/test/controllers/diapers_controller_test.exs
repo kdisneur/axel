@@ -22,6 +22,8 @@ defmodule Web.DiapersControllerTest do
     {:ok, response} = Poison.decode(conn.resp_body)
 
     assert 201 == conn.status
+    assert "change" == response["type"]
+    assert response["id"]
     assert "2016-09-12T15:30:42" == response["changed_at"]
     assert response["poop"]
     refute response["pee"]

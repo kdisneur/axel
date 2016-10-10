@@ -20,6 +20,8 @@ defmodule Web.BabyBottlesControllerTest do
     {:ok, response} = Poison.decode(conn.resp_body)
 
     assert 201 == conn.status
+    assert "feeding" == response["type"]
+    assert response["id"]
     assert 60 == response["quantity"]
     assert "2016-09-12T15:30:42" == response["fed_at"]
   end
