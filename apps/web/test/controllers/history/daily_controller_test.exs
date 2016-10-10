@@ -2,14 +2,14 @@ defmodule Web.History.DailyControllerTest do
   use Web.ConnCase
 
   setup do
-    {:ok, _feeding} = Business.BabyBottle.add({{2016, 10, 4}, {18, 28, 10}}, 60)
-    {:ok, _feeding} = Business.BabyBottle.add({{2016, 10, 3}, {18, 28, 10}}, 40)
-    {:ok, _feeding} = Business.BabyBottle.add({{2016, 10, 4}, {18, 28, 10}}, 10)
+    {:ok, _feeding} = Business.BabyBottle.add({{2016, 10, 4}, {18, 20, 10}}, 60)
+    {:ok, _feeding} = Business.BabyBottle.add({{2016, 10, 3}, {18, 23, 10}}, 40)
+    {:ok, _feeding} = Business.BabyBottle.add({{2016, 10, 4}, {18, 48, 10}}, 10)
 
     {:ok, _change} = Business.Diaper.add({{2016, 10, 4}, {18, 28, 10}}, {true, false})
-    {:ok, _change} = Business.Diaper.add({{2016, 10, 3}, {18, 28, 10}}, {true, true})
-    {:ok, _change} = Business.Diaper.add({{2016, 10, 4}, {18, 28, 10}}, {false, true})
-    {:ok, _change} = Business.Diaper.add({{2016, 10, 4}, {18, 28, 10}}, {true, true})
+    {:ok, _change} = Business.Diaper.add({{2016, 10, 3}, {18, 31, 10}}, {true, true})
+    {:ok, _change} = Business.Diaper.add({{2016, 10, 4}, {18, 22, 10}}, {false, true})
+    {:ok, _change} = Business.Diaper.add({{2016, 10, 4}, {18, 36, 10}}, {true, true})
 
     :ok
   end
