@@ -54,4 +54,34 @@ defmodule Web.BabyBottlesControllerTest do
     assert "quantity" == Enum.at(response["errors"], 0)["field"]
     assert "can't be blank" == Enum.at(response["errors"], 0)["value"]
   end
+
+  test "delete: when user is not authenticated", %{conn: conn} do
+    {:ok, feeding} = Business.BabyBottle.add({{2016, 10, 4}, {18, 4, 10}}, 90)
+
+    conn = delete(conn, baby_bottles_path(conn, :delete, feeding.id))
+
+    assert 401 == conn.status
+  end
+
+  test "delete: when feeding exists", %{conn: conn} do
+    {:ok, feeding} = Business.BabyBottle.add({{2016, 10, 4}, {18, 4, 10}}, 90)
+
+    conn =
+      conn
+      |> using_basic_auth
+      |> delete(baby_bottles_path(conn, :delete, feeding.id))
+
+    assert 200 == conn.status
+  end
+
+  test "delete: when feeding doesn't exist", %{conn: conn} do
+    {:ok, _feeding} = Business.BabyBottle.add({{2016, 10, 4}, {18, 4, 10}}, 90)
+
+    conn =
+      conn
+      |> using_basic_auth
+      |> delete(baby_bottles_path(conn, :delete, 42))
+
+    assert 422 == conn.status
+  end
 end

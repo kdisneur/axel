@@ -9,4 +9,10 @@ defmodule Business.Diaper.Query do
     |> order_by([f], desc: f.changed_at)
     |> Business.Repo.all
   end
+
+  def find_by_id(id) do
+    Change
+    |> where([f], f.id == ^id)
+    |> Business.Repo.one
+  end
 end

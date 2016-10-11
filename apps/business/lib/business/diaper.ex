@@ -16,4 +16,8 @@ defmodule Business.Diaper do
   def daily_history(date) do
     Business.Diaper.Query.all_by_date(date)
   end
+
+  def delete(id) do
+    Business.Diaper.Command.delete(id)
+  end
 end

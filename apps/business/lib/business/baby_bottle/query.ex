@@ -9,4 +9,10 @@ defmodule Business.BabyBottle.Query do
     |> order_by([f], desc: f.fed_at)
     |> Business.Repo.all
   end
+
+  def find_by_id(id) do
+    Feeding
+    |> where([f], f.id == ^id)
+    |> Business.Repo.one
+  end
 end

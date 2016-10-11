@@ -22,8 +22,8 @@ defmodule Web.Router do
   scope "/api", Web do
     pipe_through :api
 
-    resources "/baby_bottles", BabyBottlesController, only: [:create]
-    resources "/diapers", DiapersController, only: [:create]
+    resources "/baby_bottles", BabyBottlesController, only: [:create, :delete]
+    resources "/diapers", DiapersController, only: [:create, :delete]
 
     scope "/history", History do
       resources "/daily", DailyController, only: [:show]

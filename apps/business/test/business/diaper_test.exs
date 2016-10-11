@@ -81,4 +81,14 @@ defmodule Business.DiaperTest do
 
     assert 0 == length(Diaper.daily_history({2016, 10, 2}))
   end
+
+  test "delete: when change exists" do
+    {:ok, change} = Diaper.add({{2016, 10, 4}, {18, 28, 10}}, {true, false})
+    {:ok, _change} = Diaper.delete(change.id)
+  end
+
+  test "delete: when change doesn't exist" do
+    {:ok, _change} = Diaper.add({{2016, 10, 4}, {18, 28, 10}}, {true, false})
+    {:error, :not_found} = Diaper.delete(42)
+  end
 end

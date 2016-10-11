@@ -60,4 +60,34 @@ defmodule Web.DiapersControllerTest do
     assert response["poop"]
     assert response["pee"]
   end
+
+  test "delete: when user is not authenticated", %{conn: conn} do
+    {:ok, change} = Business.Diaper.add({{2016, 10, 4}, {18, 4, 10}}, {true, true})
+
+    conn = delete(conn, diapers_path(conn, :delete, change.id))
+
+    assert 401 == conn.status
+  end
+
+  test "delete: when change exists", %{conn: conn} do
+    {:ok, change} = Business.Diaper.add({{2016, 10, 4}, {18, 4, 10}}, {true, true})
+
+    conn =
+      conn
+      |> using_basic_auth
+      |> delete(diapers_path(conn, :delete, change.id))
+
+    assert 200 == conn.status
+  end
+
+  test "delete: when change doesn't exist", %{conn: conn} do
+    {:ok, _feeding} = Business.Diaper.add({{2016, 10, 4}, {18, 4, 10}}, {true, true})
+
+    conn =
+      conn
+      |> using_basic_auth
+      |> delete(diapers_path(conn, :delete, 42))
+
+    assert 422 == conn.status
+  end
 end

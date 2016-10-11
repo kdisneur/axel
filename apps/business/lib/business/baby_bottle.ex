@@ -12,4 +12,8 @@ defmodule Business.BabyBottle do
   def daily_history(date) do
     Business.BabyBottle.Query.all_by_date(date)
   end
+
+  def delete(id) do
+    Business.BabyBottle.Command.delete(id)
+  end
 end

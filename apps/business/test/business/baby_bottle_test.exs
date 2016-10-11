@@ -50,4 +50,14 @@ defmodule Business.BabyBottleTest do
 
     assert 0 == length(BabyBottle.daily_history({2016, 10, 2}))
   end
+
+  test "delete: when feeding exists" do
+    {:ok, feeding} = BabyBottle.add({{2016, 10, 4}, {18, 28, 10}}, 60)
+    {:ok, _feeding} = BabyBottle.delete(feeding.id)
+  end
+
+  test "delete: when feeding doesn't exist" do
+    {:ok, _feeding} = BabyBottle.add({{2016, 10, 4}, {18, 28, 10}}, 60)
+    {:error, :not_found} = BabyBottle.delete(42)
+  end
 end
